@@ -9,15 +9,19 @@
 #SBATCH --error=/data/users/mwannier/dating_%j.e
 #SBATCH --partition=pall
 
+#import modules
 module load UHTS/Analysis/BEDTools/2.29.2;
 
+#set variables
 CANU=/data/users/mwannier/annotation/EDTA/canu/canu.fasta.mod.EDTA.anno/
 CANU_ref=/data/users/mwannier/FS22_Assembly/polishing/canu/pilon_canon/canu.fasta
 FLYE=/data/users/mwannier/annotation/EDTA/flye/flye.fasta.mod.EDTA.anno/
 FLYE_ref=/data/users/mwannier/FS22_Assembly/polishing/flye/pilon_flye/flye.fasta
 BRASSICACEA=/data/users/mwannier/annotation/EDTA/canu/TEsorter/brassicacea/
+WORKDIR=/data/users/mwannier/annotation/dating
 
-cd /data/users/mwannier/annotation/dating
+#move to working directory
+cd $WORKDIR
 
 #create a GFF with only LTR retrotransposons (this time from $genome.mod.EDTA.intact.gff3):
 awk '$3~/retrotransposon/' $CANU/canu.fasta.mod.EDTA.intact.gff3 > canu/canu.mod.EDTA.intact.gff3_LTR

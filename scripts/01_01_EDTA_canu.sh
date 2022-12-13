@@ -10,14 +10,17 @@
 #SBATCH --error=/data/users/mwannier/error_EDTA_%j.e
 #SBATCH --partition=pcourseassembly
 
-
+#set variables
 CONTAINER=/data/courses/assembly-annotation-course/containers2
 WORKDIR=/data/users/mwannier/annotation/EDTA
 ASSEMBLYDIR=/data/users/mwannier/FS22_Assembly
-GENOME=/data/users/mwannier/FS22_Assembly/polishing/flye/pilon_flye/flye.fasta
+GENOME=/data/users/mwannier/FS22_Assembly/polishing/canu/pilon_canon/canu.fasta
+OUTDIR=$WORKDIR/canu
 
-cd /data/users/mwannier/annotation/EDTA/flye
+#move to output directory
+cd $OUTDIR
 
+#run EDTA on canu genome
 singularity exec \
 --bind $CONTAINER \
 --bind $WORKDIR \
