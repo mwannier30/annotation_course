@@ -14,12 +14,12 @@
 module load UHTS/Analysis/busco/4.1.4;
 
 #set variables
-OUTDIR=/data/users/mwannier/annotation/Salmon/flye
-BUSCO=/data/users/mwannier/annotation/BUSCO/flye
-SALMONDIR=/data/users/mwannier/annotation/salmon-1.9.0_linux_x86_64/bin
-MAKEOUT=/data/users/mwannier/annotation/MAKER/flye/flye.maker.output
+OUTDIR=/data/users/mwannier/annotation_course/Salmon/flye
+BUSCO=/data/users/mwannier/annotation_course/BUSCO/flye
+SALMONDIR=/data/users/mwannier/annotation_course/salmon-1.9.0_linux_x86_64/bin
+MAKEOUT=/data/users/mwannier/annotation_course/MAKER/flye/flye.maker.output
 SALMONINDEX=$OUTDIR/salmon_index
-READS=/data/users/mwannier/FS22_Assembly/participant_2/Illumina
+READS=/data/users/mwannier/FS22_Assembly/participant_2/RNAseq
 
 #go to busco directory
 cd $BUSCO
@@ -31,5 +31,5 @@ busco -i $MAKEOUT/flye.all.maker.proteins.fasta -l brassicales_odb10 -m proteins
 $SALMONDIR/salmon index -t $MAKEOUT/flye.all.maker.transcripts.fasta -i $SALMONINDEX -k 31
 
 #run salmon quantification
-$SALMONDIR/salmon quant -i $SALMONINDEX -l A -1 $READS/ERR3624577_1.fastq.gz -2 $READS/ERR3624577_2.fastq.gz \
+$SALMONDIR/salmon quant -i $SALMONINDEX -l A -1 $READS/SRR1584462_1.fastq.gz -2 $READS/SRR1584462_2.fastq.gz \
                        --validateMappings -o $OUTDIR/flye_transcripts_quant
